@@ -1,0 +1,82 @@
+body{
+	background-color:#808080;
+}
+div{
+	position:relative;
+}
+#div_container{
+	width:60%;
+	height:100%;
+	border:1px solid red;
+	margin-left:20%;
+	float:left;
+	background-color:honeydew;
+	border-radius:8px;
+}
+
+#div_fruit_list{
+	width:40%;
+	margin-left: 30%;
+	border: 0px solid yellow;
+	float:left;
+	
+	
+}
+#tbl_fruit{
+	border:0px solid red;
+	width:80%;
+	margin-left:10%;
+	line-height:28px;	
+	margin-top:40px;
+	margin-bottom:30px;
+}
+
+#tbl_fruit,#tbl_fruit td,#tbl_fruit tr,#tbl_fruit th{
+	border:1px solid gray;
+	border-collapse:collapse;
+	text-align:center;
+	font-family:"宋体";
+	color:threeddarkshadow;
+	line-height:40px;
+
+}
+#tbl_fruit td{
+	width:80%;
+}
+#tbl_fruit th{
+	width:20%;
+}
+
+#add_fruit_div{
+	width:100%;
+	height:50%;
+	border:0px solid blue;
+}
+
+.btn{
+	margin-top:5px;
+	margin-bottom:5px;
+	border:1px solid lightgray;
+	width:60px;
+	height:30px;
+}
+
+.input{
+	width:90%;
+	height: 90%;
+	border:1px solid lightgray;
+	padding-left:4px;
+	font-family:"宋体";
+	font-size:20px;
+	color:red;
+}
+#div_title{
+	margin-top:120px;
+	width:100%;
+
+	border:0px solid red;
+}
+.title{
+	text-align: center;
+
+}

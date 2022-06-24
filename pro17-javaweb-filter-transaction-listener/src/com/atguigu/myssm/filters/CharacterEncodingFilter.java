@@ -1,0 +1,41 @@
+package com.atguigu.myssm.filters;
+
+import com.atguigu.fruit.utils.StringUtils;
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
+/**
+ * @ClassNmae CharacterEncodingFilter
+ * @Description TODO
+ * @Author twj280
+ * @Date 2022/5/4 20:41
+ * @Version 1.0
+ **/
+@WebFilter(urlPatterns = {"*.do"},initParams = {@WebInitParam(name = "encoding",value = "utf-8")})
+public class CharacterEncodingFilter implements Filter {
+    private String encoding = "utf-8";
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+        String encodingStr = filterConfig.getInitParameter("encoding");
+        if (StringUtils.isNotEmpty(encodingStr)){
+            encoding = encodingStr;
+        }
+
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        ((HttpServletRequest)servletRequest).setCharacterEncoding(encoding);
+        filterChain.doFilter(servletRequest,servletResponse);
+    }
+
+    @Override
+    public void destroy() {
+
+    }
+}

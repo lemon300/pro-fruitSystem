@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>水果管理系统</title>
+
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" th:src="@{/js/index.js}"></script>
+
+
+</head>
+
+<body>
+
+<div id="div_container">
+    <div id="div_fruit_list">
+        <div id="div_title">
+            <h1 class="title">水果库存管理表</h1>
+        </div>
+        <hr/>
+        <div id="div_search">
+            <form th:action="@{/fruit.do}" method="post" >
+                <input type="hidden" name="oper" value ="search"/>
+                <table id="table_search">
+                    <tr>
+                        <td class="w80">
+                            请输入关键字：<input type="text" name="keywords" id="searchText" th:value="${session.keywords}"/>
+                        </td>
+                        <td class="w20">
+                            <input type="submit" value="查询" id="searchBtn">
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+        <table id="tbl_fruit">
+            <tr>
+                <th class=w20>名称</th>
+                <th class=w20>单价</th>
+                <th class=w20>库存</th>
+                <th class=w20>备注</th>
+                <th class=w20>操作</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(session.fruitList)}">
+                <td colspan="4">对不起，库存为空！</td>
+            </tr>
+            <tr th:unless="${#lists.isEmpty(session.fruitList)}" th:each="fruit : ${session.fruitList}">
+                <!---<td><a th:text="${fruit.fname}" th:href = "@{'/edit.do?fid=' + ${fruit.fid}}" >苹果</a></td> --->
+                <td><a th:text="${fruit.fname}" th:href="@{/fruit.do(fid=${fruit.fid},operate='edit')}">苹果</a></td>
+                <td th:text="${fruit.price}">5</td>
+                <td th:text="${fruit.fcount}">20</td>
+                <td th:text="${fruit.remark}">20</td>
+                <!---	<td><img src = "imgs/删除图片.jpg" class = "delImg"th:onclick="'delFruit('+ fruit.fid + ')'" /></td> --->
+                <td><img src="imgs/删除图片.jpg" class="delImg" th:onclick="|delFruit(${fruit.fid})|"/></td>
+            </tr>
+        </table>
+        <div id="div_btn">
+            <div id="div_btn_add">
+                <a th:href="@{/add.html}"><input type="submit" value="添加水果库存" class="addBtn"/></a>
+            </div>
+            <div id="div_btn_page">
+                <input type="button" value="首 页" class="pageBtn" style="letter-spacing:4px" th:onclick="|indexFruit(1)|" th:disabled="${session.pageNo==1}"/>
+                <input type="button" value="上一页" class="pageBtn" th:onclick="|indexFruit(${session.pageNo - 1})|" th:disabled="${session.pageNo==1}"/>
+                <input type="button" value="下一页" class="pageBtn" th:onclick="|indexFruit(${session.pageNo + 1})|" th:disabled="${session.pageNo==session.pageTotal}"/>
+                <input type="button" value="尾 页" class="pageBtn" style="letter-spacing:4px" th:onclick="|indexFruit(${session.pageTotal})|" th:disabled="${session.pageNo==session.pageTotal}"/>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
