@@ -1,0 +1,25 @@
+body{
+    background-color: #E8E8FF;
+}
+#div_topic_list{
+    width:80%;
+    margin-left:10%;
+    margin-top:16px;
+}
+#div_to_add{
+    width:100%;
+    margin-left:0%;
+}
+.w20{
+    width: 5%;
+}
+#textarea{
+    width: 95%;
+    height: 70px;
+    bottom: auto;
+    resize:none;
+}
+#input{
+    width: 95%;
+    height: 100%;
+}
